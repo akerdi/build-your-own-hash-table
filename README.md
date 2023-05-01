@@ -28,7 +28,7 @@ C++ 11
 
 - [x] [Ready - Prime](./tech/01Prime.md)
 - [x] [Hashing & HashTable - insert/search/delete](./tech/02HashTable.md)
-- [ ] Collision
+- [x] [Collision](./tech/03Collision.md)
 - [ ] Resize
 
 
