@@ -1,14 +1,16 @@
 #include <iostream>
 
-#include "Prime.h"
+#include "HashTable.h"
 
 int main(int argc, char** argv) {
-    int x = 53;
-    if (argc >= 2) {
-        std::cout << "arkv[1]: " << argv[1] << std::endl;
-        x = atoi(argv[1]);
-    }
-    int next_p = Prime::next_Prime(x);
-    std::cout << "x: " << x << ", next prime: " << next_p << "." << std::endl;
+    HashTable& ht = HashTable::ht_new();
+    ht.ht_insert("11", "22");
+    ht.ht_insert("22", "33");
+    char* value = ht.ht_search("11");
+    std::cout << "value11: " << value << std::endl;
+    value = ht.ht_search("22");
+    std::cout << "value22: " << value << std::endl;
+    ht.ht_destroy();
+    std::cout << "end" << std::endl;
     return 0;
 }

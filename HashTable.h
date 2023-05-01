@@ -10,8 +10,9 @@
 #include <string.h>
 class Hash_item {
 public:
-    Hash_item(char* key, char* value);
+    Hash_item(const char* key, const char* value);
     void hash_item_delete();
+    char* get_value();
 private:
     char* key;
     char* value;
@@ -20,12 +21,17 @@ private:
 class HashTable {
 public:
     static HashTable& ht_new();
-    void ht_del();
+    void ht_insert(const char* key, const char* value);
+    char* ht_search(const char* key);
+    void ht_del(const char* key);
+
+    void ht_destroy();
 private:
     static HashTable& ht_new_base_size(int base_size);
-    HashTable(int bs): base_size(bs), size(0) {
+    int ht_hash(const char* key, const int bucket_size);
+    HashTable(int bs, int s = 0): base_size(bs), size(s) {
         count = 0;
-        items = (Hash_item**)calloc(bs, sizeof(Hash_item*));
+        items = (Hash_item**)calloc(s, sizeof(Hash_item*));
     }
 private:
     int base_size;

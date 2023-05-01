@@ -26,8 +26,8 @@ C++ 11
 
 ## Goal
 
-- [x] Ready - Prime
-- [ ] HashTable - insert/search/delete
+- [x] [Ready - Prime](./tech/01Prime.md)
+- [x] [Hashing & HashTable - insert/search/delete](./tech/02HashTable.md)
 - [ ] Collision
 - [ ] Resize
 
