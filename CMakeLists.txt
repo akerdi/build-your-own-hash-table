@@ -3,4 +3,4 @@ project(hash_table)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_executable(hash_table main.cpp Prime.cpp Prime.h)
+add_executable(hash_table main.cpp Prime.cpp Prime.h HashTable.cpp HashTable.h)
