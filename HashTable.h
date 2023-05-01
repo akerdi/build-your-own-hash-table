@@ -8,7 +8,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <math.h>
 class Hash_item {
 public:
     Hash_item(const char* key, const char* value);
@@ -26,12 +25,16 @@ public:
     void ht_insert(const char* key, const char* value);
     char* ht_search(const char* key);
     void ht_del(const char* key);
-
+    void ht_print();
     void ht_destroy();
 private:
     static HashTable& ht_new_base_size(int base_size);
     int ht_hash(const char* key, const int bucket_size, int attempt_i);
     void ht_del_with_index(int index);
+    void ht_resize(int new_base_size);
+    void ht_resize_up();
+    void ht_resize_down();
+    void ht_insert_ht_item(Hash_item* hi);
     HashTable(int bs, int s = 0): base_size(bs), size(s) {
         count = 0;
         size_sqrt = sqrt(size);
