@@ -30,5 +30,6 @@ C++ 11
 - [x] [Hashing & HashTable - insert/search/delete](./tech/02HashTable.md)
 - [x] [Collision](./tech/03Collision.md)
 - [x] [Resize](./tech/04Resize.md)
+- Ending
 
 
