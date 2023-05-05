@@ -16,7 +16,7 @@ int hashing(const char* key, int prime, int bucket_size) {
     int hash = 0;
     int key_len = strlen(key);
     for (int i = 0; i < key_len; i++) {
-        hash = (pow(prime, key_len-(i+1)) * int(key[i]));
+        hash += (pow(prime, key_len-(i+1)) * int(key[i]));
     }
     return hash % bucket_size;
 }
