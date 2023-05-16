@@ -1,6 +1,6 @@
 # Build-your-own-hashtable
 
-Build your own hashtable
+Build your own HashTable.
 
 ## Description Hashtable
 
