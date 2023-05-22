@@ -3,7 +3,6 @@
 //
 
 #include <stdio.h>
-#include <math.h>
 
 #include "HashTable.h"
 #include "Prime.h"

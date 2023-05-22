@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 class Hash_item {
 public:
     Hash_item(const char* key, const char* value);

@@ -24,6 +24,16 @@ CLion
 C++ 11
 ```
 
+## Usage
+
+### Executable
+
+        cmake -DHASHTABLE_LIB_MODE=OFF .
+        
+### Library
+
+        cmake .
+
 ## Goal
 
 - [x] [Ready - Prime](./tech/01Prime.md)
