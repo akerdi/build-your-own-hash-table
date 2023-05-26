@@ -11,13 +11,16 @@
 #define HT_PRIME_CONST_1 101
 #define HT_PRIME_CONST_2 103
 
-int hashing(const char* key, int prime, int bucket_size) {
+static int hashing(const char* key, int prime, int bucket_size) {
     int hash = 0;
     int key_len = strlen(key);
     for (int i = 0; i < key_len; i++) {
         hash += (pow(prime, key_len-(i+1)) * int(key[i]));
     }
     return hash % bucket_size;
+}
+static int floor_mod(const int mod_num, const int check_num) {
+    return check_num % mod_num == 0 ? check_num - 1 : check_num;
 }
 
 #pragma mark - Hash_item
@@ -51,9 +54,10 @@ HashTable& HashTable::ht_new() {
     return ht_new_base_size(HT_BASE_SIZE);
 }
 int HashTable::ht_hash(const char *key, const int bucket_size, int attempt_i) {
-    int aIndex = hashing(key, HT_PRIME_CONST_1, bucket_size);
-    int bIndex = hashing(key, HT_PRIME_CONST_2, bucket_size);
-    return (aIndex + attempt_i * (bIndex+size_sqrt)) % bucket_size;
+    const int aIndex = hashing(key, HT_PRIME_CONST_1, bucket_size);
+    const int bIndex = hashing(key, HT_PRIME_CONST_2, bucket_size);
+    const int mod_index = floor_mod(bucket_size, (bIndex + 1));
+    return (aIndex + attempt_i * mod_index) % bucket_size;
 }
 
 void HashTable::ht_resize(int new_base_size) {
@@ -64,6 +68,7 @@ void HashTable::ht_resize(int new_base_size) {
         Hash_item* hi = items[i];
         if (hi) {
             new_ht.ht_insert_ht_item(hi);
+            items[i] = NULL;
         }
     }
 
@@ -71,11 +76,11 @@ void HashTable::ht_resize(int new_base_size) {
     count = new_ht.count;
 
     int temp_size = size;
-    size = new_ht.size;
+    this->size = new_ht.size;
     new_ht.size = temp_size;
 
     Hash_item** temp_items = items;
-    items = new_ht.items;
+    this->items = new_ht.items;
     new_ht.count = 0;
     new_ht.items = temp_items;
 
