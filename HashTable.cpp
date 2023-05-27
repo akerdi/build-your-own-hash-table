@@ -10,10 +10,15 @@
 #define HT_BASE_SIZE 7
 #define HT_PRIME_CONST_1 101
 #define HT_PRIME_CONST_2 103
+#define HASH_POW_MAX_LEN 5
 
-static int hashing(const char* key, int prime, int bucket_size) {
+static int min(int x, int y) {
+    return x < y ? x : y;
+}
+
+static uint32_t hashing(const char* key, int prime, int bucket_size) {
     int hash = 0;
-    int key_len = strlen(key);
+    int key_len = min(strlen(key), HASH_POW_MAX_LEN);
     for (int i = 0; i < key_len; i++) {
         hash += (pow(prime, key_len-(i+1)) * int(key[i]));
     }
@@ -54,8 +59,8 @@ HashTable& HashTable::ht_new() {
     return ht_new_base_size(HT_BASE_SIZE);
 }
 int HashTable::ht_hash(const char *key, const int bucket_size, int attempt_i) {
-    const int aIndex = hashing(key, HT_PRIME_CONST_1, bucket_size);
-    const int bIndex = hashing(key, HT_PRIME_CONST_2, bucket_size);
+    const uint32_t aIndex = hashing(key, HT_PRIME_CONST_1, bucket_size);
+    const uint32_t bIndex = hashing(key, HT_PRIME_CONST_2, bucket_size);
     const int mod_index = floor_mod(bucket_size, (bIndex + 1));
     return (aIndex + attempt_i * mod_index) % bucket_size;
 }
@@ -117,7 +122,6 @@ void HashTable::ht_insert(const char *key, const char *value) {
         ht_resize_up();
     }
     Hash_item* hi = new Hash_item(key, value);
-
     ht_insert_ht_item(hi);
 }
 char* HashTable::ht_search(const char *key) {
