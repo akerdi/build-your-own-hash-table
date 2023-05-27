@@ -215,7 +215,6 @@ private:
 private:
     int base_size;
     int size;
-    int size_sqrt;
     Hash_item<V>** items;
     int count;
 };

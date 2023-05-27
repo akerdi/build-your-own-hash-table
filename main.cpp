@@ -114,9 +114,19 @@ void test_model() {
     cout << "end" << endl;
 }
 
+void test_charx() {
+    cout << "start." << endl;
+    HashTable<char*>& ht = HashTable<char*>::ht_new();
+    ht.ht_insert("aker", "akerdi");
+    ht.ht_print();
+    ht.ht_destroy();
+    cout << "end" << endl;
+}
+
 int main(int argc, char** argv) {
     cout.setf(ios::unitbuf);
     test_string();
     test_model();
+    test_charx();
     return 0;
 }
