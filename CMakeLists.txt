@@ -15,8 +15,8 @@ configure_file(
 
 if (HASHTABLE_LIB_MODE)
     message("use compiler")
-    add_library(HASHTABLE Prime.cpp Prime.h HashTable.cpp HashTable.h)
+    add_library(HASHTABLE Prime.cpp Prime.h HashTable.hpp)
 else()
     message("add executable")
-    add_executable(hash_table main.cpp Prime.cpp Prime.h HashTable.cpp HashTable.h)
+    add_executable(hash_table main.cpp Prime.cpp Prime.h HashTable.hpp)
 endif()
