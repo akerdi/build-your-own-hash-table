@@ -82,7 +82,6 @@ class HashTable {
 public:
     HashTable(int bs, int s = 0): base_size(bs), size(s) {
         count = 0;
-        size_sqrt = sqrt(size);
         items = (Hash_item<V>**)calloc(s, sizeof(Hash_item<V>*));
     }
     void ht_insert(const char* key, const V& value) {
